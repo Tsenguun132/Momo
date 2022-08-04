@@ -6,8 +6,18 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HomeView: View {
+    
+    @Environment(\.managedObjectContext) var context
+    
+    @FetchRequest(
+        entity: PaymentActivity.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \PaymentActivity.date, ascending: false) ])
+    var paymentActivities: FetchedResults<PaymentActivity>
+    
+    
     var body: some View {
         VStack {
             HeaderView()
@@ -21,9 +31,20 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+//
+//        let context = PersistenceController.shared.container.viewContext
+//        let testTrans = PaymentActivity(context: context)
+//        testTrans.paymentID = UUID()
+//        testTrans.name = "Flight ticket"
+//        testTrans.amount = 200.0
+//        testTrans.date = .today
+//        testTrans.type = .expense
+
+        
+        return Group {
             HomeView()
             CardView().previewLayout(.sizeThatFits)
+//            TransactionCellView(transaction: testTrans).previewLayout(.sizeThatFits)
         }
     }
 }
@@ -167,5 +188,36 @@ struct TransactionsView: View {
 //            }
         }
         .padding(.horizontal)
+    }
+}
+
+struct TransactionCellView: View {
+    
+    @ObservedObject var transaction: PaymentActivity
+    
+    var body: some View {
+        HStack {
+            if transaction.isFault {
+                EmptyView()
+            } else {
+                Image(systemName: transaction.type == .income ? SFSymbols.arrowUp : SFSymbols.arrowDown)
+                    .font(.title)
+                    .foregroundColor(Color(transaction.type == .income ? "IncomeCard" : " ExpenseCard").opacity(0.5))
+                
+                VStack(alignment: .leading) {
+                    Text(transaction.name)
+                        .font(.system(.body, design: .default))
+                    Text(transaction.date.string())
+                        .font(.system(.caption, design: .default))
+                        .foregroundColor(.gray)
+                }
+                
+                Spacer()
+                
+                Text((transaction.type == .income ? "+" : "-") + NumberFormatter.currency(from: transaction.amount))
+                    .font(.system(.title2,design: .default))
+            }
+        }
+        .padding(.vertical, 5)
     }
 }

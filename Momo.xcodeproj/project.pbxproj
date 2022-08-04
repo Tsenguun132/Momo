@@ -19,6 +19,7 @@
 		E2299C4D2899C6520024E5FD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2299C4C2899C6520024E5FD /* ProfileView.swift */; };
 		E2299C512899D6940024E5FD /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2299C502899D6940024E5FD /* UIHelper.swift */; };
 		E237637F289B31030023BECB /* PaymentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E237637E289B31030023BECB /* PaymentActivity.swift */; };
+		E2376381289B4CD60023BECB /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2376380289B4CD60023BECB /* Date+Ext.swift */; };
 		E25FBDDF289AE77F00EDFA39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FBDDE289AE77F00EDFA39 /* Constants.swift */; };
 		E2E43F5D289AD74F00E4B37D /* NumberFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E43F5C289AD74F00E4B37D /* NumberFormatter+Ext.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		E2299C4C2899C6520024E5FD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E2299C502899D6940024E5FD /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		E237637E289B31030023BECB /* PaymentActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentActivity.swift; sourceTree = "<group>"; };
+		E2376380289B4CD60023BECB /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		E25FBDDE289AE77F00EDFA39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2E43F5C289AD74F00E4B37D /* NumberFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E43F5C289AD74F00E4B37D /* NumberFormatter+Ext.swift */,
+				E2376380289B4CD60023BECB /* Date+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			files = (
 				E2299C4D2899C6520024E5FD /* ProfileView.swift in Sources */,
 				E25FBDDF289AE77F00EDFA39 /* Constants.swift in Sources */,
+				E2376381289B4CD60023BECB /* Date+Ext.swift in Sources */,
 				E2E43F5D289AD74F00E4B37D /* NumberFormatter+Ext.swift in Sources */,
 				E237637F289B31030023BECB /* PaymentActivity.swift in Sources */,
 				E2299C3A2899C3DA0024E5FD /* Persistence.swift in Sources */,
