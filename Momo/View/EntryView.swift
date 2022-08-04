@@ -9,25 +9,25 @@ import SwiftUI
 import CoreData
 
 struct EntryView: View {
-    init() {
-        
-        let image = UIImage.gradientImageWithBounds(
-            bounds: CGRect( x: 0, y: 0, width: UIScreen.main.scale, height: 8),
-            colors: [
-                UIColor.clear.cgColor,
-                UIColor.black.withAlphaComponent(0.1).cgColor
-            ]
-        )
-        
-        let appearance = UITabBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = UIColor.systemGray6
-        
-        appearance.backgroundImage = UIImage()
-        appearance.shadowImage = image
-        
-        UITabBar.appearance().standardAppearance = appearance
-    }
+//    init() {
+//
+//        let image = UIImage.gradientImageWithBounds(
+//            bounds: CGRect( x: 0, y: 0, width: UIScreen.main.scale, height: 8),
+//            colors: [
+//                UIColor.clear.cgColor,
+//                UIColor.black.withAlphaComponent(0.1).cgColor
+//            ]
+//        )
+//
+//        let appearance = UITabBarAppearance()
+//        appearance.configureWithTransparentBackground()
+//        appearance.backgroundColor = UIColor.systemGray6
+//
+//        appearance.backgroundImage = UIImage()
+//        appearance.shadowImage = image
+//
+//        UITabBar.appearance().standardAppearance = appearance
+//    }
     
     @Environment(\.managedObjectContext) private var viewContext
     @State private var selection = 0
@@ -81,15 +81,21 @@ struct EntryView: View {
                     Button {
                         print("button pressed")
                     } label: {
-                        Image(systemName: "plus")
-                            .font(.largeTitle)
-                            .padding(15)
-                            .background(Color(red: 84/255, green: 153/255, blue: 148/255))
-                            .clipShape(Circle())
-                            .foregroundColor(.white)
-                            .padding(.bottom, 20)
+                            Circle()
+                                .trim(from: 0.0, to: 0.5)
+                                .stroke(Color(red: 242/255, green: 243/255, blue: 244/255), lineWidth: 20)
+                                .frame(width: 60, height: 80)
+                                .overlay {
+                                    Image(systemName: "plus")
+                                        .font(.largeTitle)
+                                        .padding(15)
+                                        .background(Color(red: 84/255, green: 153/255, blue: 148/255))
+                                        .clipShape(Circle())
+                                        .foregroundColor(.white)
+                                        .shadow(color: Color("darkGreen").opacity(0.6), radius: 5, x: 0, y: 2)
+                                }
+                                .padding(.bottom, 10)
                     }
-                    .shadow(color: .gray, radius: 5)
                 }
             }
         }

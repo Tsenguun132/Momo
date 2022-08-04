@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension UIImage {
     static func gradientImageWithBounds(bounds: CGRect, colors: [CGColor]) -> UIImage {
@@ -20,3 +21,5 @@ extension UIImage {
         return image!
     }
 }
+
+
