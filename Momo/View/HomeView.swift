@@ -10,13 +10,13 @@ import CoreData
 
 struct HomeView: View {
     
-    @Environment(\.managedObjectContext) var context
-    
-    @FetchRequest(
-        entity: PaymentActivity.entity(),
-        sortDescriptors: [ NSSortDescriptor(keyPath: \PaymentActivity.date, ascending: false) ])
-    var paymentActivities: FetchedResults<PaymentActivity>
-    
+//    @Environment(\.managedObjectContext) var context
+//
+//    @FetchRequest(
+//        entity: PaymentActivity.entity(),
+//        sortDescriptors: [ NSSortDescriptor(keyPath: \PaymentActivity.date, ascending: false) ])
+//    var paymentActivities: FetchedResults<PaymentActivity>
+//
     
     var body: some View {
         VStack {
@@ -25,7 +25,7 @@ struct HomeView: View {
             TransactionsView()
             Spacer()
         }
-        .background(Color(red: 242/255, green: 243/255, blue: 244/255))
+        .background(Color.backgroundGrayColor)
     }
 }
 
@@ -100,7 +100,6 @@ struct CardView: View {
                         Spacer()
                         MoneyTypeView(typeOf: "Expense", balance: 284.00, typeOfImage: SFSymbols.arrowUp)
                     }
-                    
                 }
                 .padding()
             }

@@ -21,6 +21,9 @@
 		E237637F289B31030023BECB /* PaymentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E237637E289B31030023BECB /* PaymentActivity.swift */; };
 		E2376381289B4CD60023BECB /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2376380289B4CD60023BECB /* Date+Ext.swift */; };
 		E25FBDDF289AE77F00EDFA39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FBDDE289AE77F00EDFA39 /* Constants.swift */; };
+		E2D0253B289C5BE800EDC1C7 /* AddTransactionFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0253A289C5BE800EDC1C7 /* AddTransactionFormView.swift */; };
+		E2D0253D289C5CBE00EDC1C7 /* AddTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0253C289C5CBE00EDC1C7 /* AddTransactionViewModel.swift */; };
+		E2D0253F289C868E00EDC1C7 /* Colors+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0253E289C868E00EDC1C7 /* Colors+Ext.swift */; };
 		E2E43F5D289AD74F00E4B37D /* NumberFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E43F5C289AD74F00E4B37D /* NumberFormatter+Ext.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +43,9 @@
 		E237637E289B31030023BECB /* PaymentActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentActivity.swift; sourceTree = "<group>"; };
 		E2376380289B4CD60023BECB /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		E25FBDDE289AE77F00EDFA39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E2D0253A289C5BE800EDC1C7 /* AddTransactionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionFormView.swift; sourceTree = "<group>"; };
+		E2D0253C289C5CBE00EDC1C7 /* AddTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewModel.swift; sourceTree = "<group>"; };
+		E2D0253E289C868E00EDC1C7 /* Colors+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+Ext.swift"; sourceTree = "<group>"; };
 		E2E43F5C289AD74F00E4B37D /* NumberFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +103,7 @@
 		E2299C432899C46B0024E5FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E2299C392899C3DA0024E5FD /* Persistence.swift */,
 				E237637E289B31030023BECB /* PaymentActivity.swift */,
 			);
 			path = Model;
@@ -110,6 +117,7 @@
 				E2299C482899C62E0024E5FD /* StatisticView.swift */,
 				E2299C4A2899C6490024E5FD /* WalletView.swift */,
 				E2299C4C2899C6520024E5FD /* ProfileView.swift */,
+				E2D0253A289C5BE800EDC1C7 /* AddTransactionFormView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -117,7 +125,7 @@
 		E2299C452899C4730024E5FD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E2299C392899C3DA0024E5FD /* Persistence.swift */,
+				E2D0253C289C5CBE00EDC1C7 /* AddTransactionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -127,6 +135,7 @@
 			children = (
 				E2E43F5C289AD74F00E4B37D /* NumberFormatter+Ext.swift */,
 				E2376380289B4CD60023BECB /* Date+Ext.swift */,
+				E2D0253E289C868E00EDC1C7 /* Colors+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -219,10 +228,13 @@
 				E2299C492899C62E0024E5FD /* StatisticView.swift in Sources */,
 				E2299C3D2899C3DA0024E5FD /* Momo.xcdatamodeld in Sources */,
 				E2299C4B2899C6490024E5FD /* WalletView.swift in Sources */,
+				E2D0253F289C868E00EDC1C7 /* Colors+Ext.swift in Sources */,
 				E2299C512899D6940024E5FD /* UIHelper.swift in Sources */,
 				E2299C332899C3D90024E5FD /* EntryView.swift in Sources */,
 				E2299C472899C5FF0024E5FD /* HomeView.swift in Sources */,
 				E2299C312899C3D90024E5FD /* MomoApp.swift in Sources */,
+				E2D0253D289C5CBE00EDC1C7 /* AddTransactionViewModel.swift in Sources */,
+				E2D0253B289C5BE800EDC1C7 /* AddTransactionFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

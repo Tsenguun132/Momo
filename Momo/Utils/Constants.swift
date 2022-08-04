@@ -11,5 +11,7 @@ import SwiftUI
 enum SFSymbols {
     static let arrowDown  = "arrow.down"
     static let arrowUp = "arrow.up"
+    
+    static let backArrow = "chevron.backward"
 }
 
