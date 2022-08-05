@@ -14,7 +14,7 @@ class AddTransactionFormViewModel: ObservableObject {
     @Published var name = ""
     @Published var date = Date.now
     @Published var amount = ""
-    @Published var type = PaymentCategory.expense
+    @Published var type = PaymentCategory.income
     
     //output
     @Published var isNameValid = false
@@ -27,7 +27,7 @@ class AddTransactionFormViewModel: ObservableObject {
         
         self.name = paymentActivity?.name ?? ""
         self.amount = "\(paymentActivity?.amount ?? 0.0)"
-        self.type = paymentActivity?.type ?? .expense
+        self.type = paymentActivity?.type ?? .income
         self.date = paymentActivity?.date ?? Date.today
         
         

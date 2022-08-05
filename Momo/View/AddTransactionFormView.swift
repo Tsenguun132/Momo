@@ -27,7 +27,7 @@ struct AddTransactionFormView: View {
                 Button {
                     // action
                 } label: {
-                    Image(systemName: SFSymbols.backArrow)
+                    Image(systemName: SFSymbols.backArrow) // or cancel
                         .font(.system(.title2, design: .default))
                 }
                 Spacer()
@@ -52,11 +52,63 @@ struct AddTransactionFormView: View {
                 
                 // to do choose income or expense
                 
+                VStack {
+                    HStack(spacing: 0){
+                        Button {
+                            self.addTransactionFormViewModel.type = .income
+                        } label: {
+                            Text("Income")
+                                .font(.headline)
+                                .foregroundColor(self.addTransactionFormViewModel.type == .income ? Color.white : Color.primary)
+                                .padding(.horizontal, 30)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .background(self.addTransactionFormViewModel.type == .income ? Color("darkGreen") : Color.white)
+                        .cornerRadius(10)
+
+                        Button {
+                            self.addTransactionFormViewModel.type = .expense
+                        } label: {
+                            Text("Expense")
+                                .font(.headline)
+                                .foregroundColor(self.addTransactionFormViewModel.type == .expense ? Color.white : Color.primary)
+                                .padding(.horizontal, 30)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .background(self.addTransactionFormViewModel.type == .expense ? Color("darkGreen") : Color.white)
+                        .cornerRadius(10)
+                    }
+                    .overlay(content: {
+                        RoundedRectangle(cornerRadius: 10)
+                            .strokeBorder(Color.gray.opacity(0.5), lineWidth: 1.5)
+                    })
+                    .padding()
+                } // vstack end
+                
                 FormTextField(name: "Name", placeHolder: "Enter here", value: $addTransactionFormViewModel.name)
                 
                 FormTextField(name: "Amount", placeHolder: "0.0", value: $addTransactionFormViewModel.amount)
                 
                 FormDateField(name: "Date", value: $addTransactionFormViewModel.date)
+                
+                Spacer()
+                
+                Button {
+                    // save button
+                } label: {
+                    Text("Add new") // change to add new expense or income based on status
+                        .font(.system(.title3, design: .default))
+                        .bold()
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .background(Color("darkGreen"))
+                        .cornerRadius(10)
+                        .padding()
+                }
+
             }
             .background(Color.white)
             .cornerRadius(20)
