@@ -106,6 +106,7 @@ struct CardView: View {
             .cornerRadius(20)
             .padding()
             .shadow(color: Color("darkGreen").opacity(0.5), radius: 5, x: 0, y: 8)
+            .padding(.bottom, 20)
     }
 }
 

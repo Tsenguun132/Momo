@@ -31,10 +31,12 @@ struct EntryView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @State private var selection = 0
+    
+    @State private var showAddTransactionView = false
 
     var body: some View {
-        
         ZStack {
+
             TabView(selection: $selection) {
                 
                 HomeView()
@@ -78,9 +80,10 @@ struct EntryView: View {
             if selection == 0 {
                 VStack {
                     Spacer()
-                    Button {
-                        print("button pressed")
-                    } label: {
+                    
+                        Button {
+                            showAddTransactionView =  true
+                        } label: {
                             Circle()
                                 .trim(from: 0.0, to: 0.5)
                                 .stroke(Color(red: 242/255, green: 243/255, blue: 244/255), lineWidth: 20)
@@ -95,12 +98,14 @@ struct EntryView: View {
                                         .shadow(color: Color("darkGreen").opacity(0.6), radius: 5, x: 0, y: 2)
                                 }
                                 .padding(.bottom, 10)
-                    }
+                        }
+                        .sheet(isPresented: $showAddTransactionView) {
+                            AddTransactionFormView.init()
+                        }
                 }
             }
         }
     }
-    
 }
 
 

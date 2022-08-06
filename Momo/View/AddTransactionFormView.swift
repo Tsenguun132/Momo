@@ -25,7 +25,7 @@ struct AddTransactionFormView: View {
         VStack {
             HStack {
                 Button {
-                    // action
+                    presenatationMode.wrappedValue.dismiss()
                 } label: {
                     Image(systemName: SFSymbols.backArrow) // or cancel
                         .font(.system(.title2, design: .default))
@@ -90,6 +90,7 @@ struct AddTransactionFormView: View {
                 FormTextField(name: "Name", placeHolder: "Enter here", value: $addTransactionFormViewModel.name)
                 
                 FormTextField(name: "Amount", placeHolder: "0.0", value: $addTransactionFormViewModel.amount)
+                    .keyboardType(.decimalPad)
                 
                 FormDateField(name: "Date", value: $addTransactionFormViewModel.date)
                 
