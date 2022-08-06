@@ -9,14 +9,14 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    
-//    @Environment(\.managedObjectContext) var context
 //
-//    @FetchRequest(
-//        entity: PaymentActivity.entity(),
-//        sortDescriptors: [ NSSortDescriptor(keyPath: \PaymentActivity.date, ascending: false) ])
-//    var paymentActivities: FetchedResults<PaymentActivity>
-//
+    @Environment(\.managedObjectContext) var context
+
+    @FetchRequest(
+        entity: PaymentActivity.entity(),
+        sortDescriptors: [ NSSortDescriptor(keyPath: \PaymentActivity.date, ascending: false) ])
+    var paymentActivities: FetchedResults<PaymentActivity>
+
     
     var body: some View {
         VStack {
@@ -24,8 +24,36 @@ struct HomeView: View {
             CardView()
             TransactionsView()
             Spacer()
+            List {
+                ForEach(paymentActivities) { paymentActivity in
+                    TransactionCellView(transaction: paymentActivity)
+                }
+                .onDelete(perform: deleteTask)
+            }
+            
         }
         .background(Color.backgroundGrayColor)
+    }
+    
+    private func delete(payment: PaymentActivity) {
+        self.context.delete(payment)
+        do {
+            try self.context.save()
+        } catch {
+            print("Failed to save the context: \(error.localizedDescription)")
+        }
+    }
+    private func deleteTask(indexSet: IndexSet) {
+        for index in indexSet {
+            let itemToDelete = paymentActivities[index]
+            context.delete(itemToDelete)
+        }
+        DispatchQueue.main.async {
+            do {
+                try context.save()
+            } catch {
+                print(error)
+    } }
     }
 }
 
@@ -33,7 +61,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
 //
 //        let context = PersistenceController.shared.container.viewContext
-//        let testTrans = PaymentActivity(context: context)
+//        let testTrans = PaymentActivity(context: context)e
 //        testTrans.paymentID = UUID()
 //        testTrans.name = "Flight ticket"
 //        testTrans.amount = 200.0

@@ -97,11 +97,13 @@ struct AddTransactionFormView: View {
                 Spacer()
                 
                 Button {
-                    // save button
+                    self.save()
+                    self.presenatationMode.wrappedValue.dismiss()
                 } label: {
                     Text("Add new") // change to add new expense or income based on status
                         .font(.system(.title3, design: .default))
                         .bold()
+                        .opacity(addTransactionFormViewModel.isAmountValid ? 1.0 : 0.7)
                         .foregroundColor(.white)
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -109,6 +111,7 @@ struct AddTransactionFormView: View {
                         .cornerRadius(10)
                         .padding()
                 }
+                .disabled(!addTransactionFormViewModel.isAmountValid)
 
             }
             .background(Color.white)
@@ -118,6 +121,32 @@ struct AddTransactionFormView: View {
             Spacer()
         } //VStack end
         .background(Color.backgroundGrayColor)
+    }
+    
+    // Save the record using Core Data
+    private func save() {
+        let newPayment = payment ?? PaymentActivity(context: context)
+        
+        newPayment.paymentID = UUID()
+        newPayment.name = addTransactionFormViewModel.name
+        newPayment.amount = Double(addTransactionFormViewModel.amount)!
+        newPayment.type = addTransactionFormViewModel.type
+        newPayment.date = addTransactionFormViewModel.date
+        
+//        newPayment.paymentId = UUID()
+//        newPayment.name = paymentFormViewModel.name
+//        newPayment.type = paymentFormViewModel.type
+//        newPayment.date = paymentFormViewModel.date
+//        newPayment.amount = Double(paymentFormViewModel.amount)!
+//        newPayment.address = paymentFormViewModel.location
+//        newPayment.memo = paymentFormViewModel.memo
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save the record...")
+            print(error.localizedDescription)
+        }
     }
 }
 
