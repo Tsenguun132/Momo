@@ -225,19 +225,21 @@ struct TransactionCellView: View {
     
     var body: some View {
         HStack {
-            if transaction.isFault {
-                EmptyView()
-            } else {
+//            if transaction.isFault {
+////                EmptyView()
+//                Text("Faulty")
+//            } else {
                 Image(systemName: transaction.type == .income ? SFSymbols.arrowUp : SFSymbols.arrowDown)
                     .font(.title)
-                    .foregroundColor(Color(transaction.type == .income ? "IncomeCard" : " ExpenseCard").opacity(0.5))
+//                    .foregroundColor(Color(transaction.type == .income ? "IncomeCard" : " ExpenseCard")) // to add .opacity(0.5) // causing error
+            // MARK: causing error
                 
                 VStack(alignment: .leading) {
                     Text(transaction.name)
                         .font(.system(.body, design: .default))
-                    Text(transaction.date.string())
-                        .font(.system(.caption, design: .default))
-                        .foregroundColor(.gray)
+//                    Text(transaction.date.string()) // causing crash
+//                        .font(.system(.caption, design: .default))
+//                        .foregroundColor(.gray)
                 }
                 
                 Spacer()
@@ -245,7 +247,7 @@ struct TransactionCellView: View {
                 Text((transaction.type == .income ? "+" : "-") + NumberFormatter.currency(from: transaction.amount))
                     .font(.system(.title2,design: .default))
             }
-        }
+//        }
         .padding(.vertical, 5)
     }
 }

@@ -112,7 +112,8 @@ struct EntryView: View {
 
 struct EntryView_Previews: PreviewProvider {
     static var previews: some View {
-        EntryView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        EntryView()
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 

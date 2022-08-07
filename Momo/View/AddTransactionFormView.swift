@@ -129,8 +129,8 @@ struct AddTransactionFormView: View {
         
         newPayment.paymentID = UUID()
         newPayment.name = addTransactionFormViewModel.name
-        newPayment.amount = Double(addTransactionFormViewModel.amount)!
         newPayment.type = addTransactionFormViewModel.type
+        newPayment.amount = Double(addTransactionFormViewModel.amount)!
         newPayment.date = addTransactionFormViewModel.date
         
 //        newPayment.paymentId = UUID()
@@ -140,7 +140,7 @@ struct AddTransactionFormView: View {
 //        newPayment.amount = Double(paymentFormViewModel.amount)!
 //        newPayment.address = paymentFormViewModel.location
 //        newPayment.memo = paymentFormViewModel.memo
-        
+        print(newPayment)
         do {
             try context.save()
         } catch {
