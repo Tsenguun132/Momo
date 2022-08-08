@@ -20,6 +20,8 @@ public class PaymentActivity: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var amount: Double
     @NSManaged public var typeNum: Int32
+    
+    
 }
 
 extension PaymentActivity: Identifiable {

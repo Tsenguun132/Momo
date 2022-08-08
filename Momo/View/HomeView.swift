@@ -11,26 +11,41 @@ import CoreData
 struct HomeView: View {
 //
     @Environment(\.managedObjectContext) var context
-
+//
     @FetchRequest(
         entity: PaymentActivity.entity(),
         sortDescriptors: [ NSSortDescriptor(keyPath: \PaymentActivity.date, ascending: false) ])
     var paymentActivities: FetchedResults<PaymentActivity>
-
+//
+//
+    @FetchRequest var request: FetchedResults<PaymentActivity>
     
+    init() {
+        let request: NSFetchRequest<PaymentActivity> = PaymentActivity.fetchRequest() as! NSFetchRequest<PaymentActivity>
+//        request.predicate = NSPredicate(format: "active = true")
+
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \PaymentActivity.date, ascending: false)
+        ]
+
+        request.fetchLimit = 5
+        request.fetchOffset = 5
+        _request = FetchRequest(fetchRequest: request)
+    }
     var body: some View {
         VStack {
             HeaderView()
             CardView()
             TransactionsView()
-            Spacer()
             List {
-                ForEach(paymentActivities) { paymentActivity in
+            ForEach(request, id: \.paymentID) { paymentActivity in
                     TransactionCellView(transaction: paymentActivity)
+                        .listRowSeparator(.hidden)
+                        .padding(.horizontal)
                 }
                 .onDelete(perform: deleteTask)
             }
-            
+            Spacer()
         }
         .background(Color.backgroundGrayColor)
     }
@@ -53,26 +68,28 @@ struct HomeView: View {
                 try context.save()
             } catch {
                 print(error)
-    } }
+            }
+        }
     }
+
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
 //
-//        let context = PersistenceController.shared.container.viewContext
-//        let testTrans = PaymentActivity(context: context)e
-//        testTrans.paymentID = UUID()
-//        testTrans.name = "Flight ticket"
-//        testTrans.amount = 200.0
-//        testTrans.date = .today
-//        testTrans.type = .expense
+        let context = PersistenceController.shared.container.viewContext
+        let testTrans = PaymentActivity(context: context)
+        testTrans.paymentID = UUID()
+        testTrans.name = "Movie ticket"
+        testTrans.amount = 200.0
+        testTrans.date = .today
+        testTrans.type = .expense
 
         
         return Group {
             HomeView()
             CardView().previewLayout(.sizeThatFits)
-//            TransactionCellView(transaction: testTrans).previewLayout(.sizeThatFits)
+            TransactionCellView(transaction: testTrans).previewLayout(.sizeThatFits)
         }
     }
 }
@@ -225,21 +242,25 @@ struct TransactionCellView: View {
     
     var body: some View {
         HStack {
-//            if transaction.isFault {
-////                EmptyView()
-//                Text("Faulty")
-//            } else {
+            if transaction.isFault {
+//                EmptyView()
+                Text("Faulty")
+            } else {
                 Image(systemName: transaction.type == .income ? SFSymbols.arrowUp : SFSymbols.arrowDown)
                     .font(.title)
+                    .padding(5)
+                    .background(Color.gray.opacity(0.6))
+                    .clipShape(Circle())
+
 //                    .foregroundColor(Color(transaction.type == .income ? "IncomeCard" : " ExpenseCard")) // to add .opacity(0.5) // causing error
             // MARK: causing error
                 
                 VStack(alignment: .leading) {
                     Text(transaction.name)
                         .font(.system(.body, design: .default))
-//                    Text(transaction.date.string()) // causing crash
-//                        .font(.system(.caption, design: .default))
-//                        .foregroundColor(.gray)
+                    Text(transaction.date.string()) // causing crash
+                        .font(.system(.caption, design: .default))
+                        .foregroundColor(.gray)
                 }
                 
                 Spacer()
@@ -247,7 +268,7 @@ struct TransactionCellView: View {
                 Text((transaction.type == .income ? "+" : "-") + NumberFormatter.currency(from: transaction.amount))
                     .font(.system(.title2,design: .default))
             }
-//        }
-        .padding(.vertical, 5)
+        }
+        .padding(.horizontal, 5)
     }
 }
