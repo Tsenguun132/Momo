@@ -133,6 +133,8 @@ struct AddTransactionFormView: View {
         newPayment.amount = Double(addTransactionFormViewModel.amount)!
         newPayment.date = addTransactionFormViewModel.date
         
+        
+        // to try something else
 //        newPayment.paymentId = UUID()
 //        newPayment.name = paymentFormViewModel.name
 //        newPayment.type = paymentFormViewModel.type
